@@ -1,52 +1,48 @@
 import React, { useState } from 'react';
 
 const DataEntryPage = () => {
-  // Introductory details state
+  
   const [studentName, setStudentName] = useState('');
   const [bio, setBio] = useState('');
   const [introDetails, setIntroDetails] = useState('');
 
-  // About Me state
+  
   const [profilePicture, setProfilePicture] = useState('');
   const [skills, setSkills] = useState('');
   const [interests, setInterests] = useState('');
   const [aboutDescription, setAboutDescription] = useState('');
 
-  // Projects state (allows multiple projects)
   const [projects, setProjects] = useState([
     { title: '', description: '', image: '', github: '' }
   ]);
 
-  // Social Media Links state (dynamic addition)
+  
   const [socialLinks, setSocialLinks] = useState([
     { name: '', url: '' }
   ]);
 
-  // Handlers for updating project fields
+ 
   const handleProjectChange = (index, field, value) => {
     const newProjects = [...projects];
     newProjects[index][field] = value;
     setProjects(newProjects);
   };
 
-  // Add a new empty project entry
+ 
   const handleAddProject = () => {
     setProjects([...projects, { title: '', description: '', image: '', github: '' }]);
   };
 
-  // Handlers for updating social media links
   const handleSocialLinkChange = (index, field, value) => {
     const newSocialLinks = [...socialLinks];
     newSocialLinks[index][field] = value;
     setSocialLinks(newSocialLinks);
   };
 
-  // Add a new empty social media link entry
   const handleAddSocialLink = () => {
     setSocialLinks([...socialLinks, { name: '', url: '' }]);
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
@@ -63,8 +59,6 @@ const DataEntryPage = () => {
       socialLinks,
     };
 
-    // For demonstration, we'll log the data.
-    // In your app, you can redirect or pass this data to generate your portfolio.
     console.log('Submitted Data:', formData);
   };
 
@@ -72,7 +66,7 @@ const DataEntryPage = () => {
     <div className="container py-4" style={{ backgroundColor: '#343a40', color: 'white' }}>
       <h1 className="mb-4">Portfolio Data Entry</h1>
       <form onSubmit={handleSubmit}>
-        {/* Introductory Details */}
+      
         <fieldset className="border p-3 mb-4" style={{ borderColor: 'white' }}>
           <legend className="w-auto px-2">Introductory Details</legend>
           <div className="form-group mb-3">
@@ -105,7 +99,6 @@ const DataEntryPage = () => {
           </div>
         </fieldset>
 
-        {/* About Me Section */}
         <fieldset className="border p-3 mb-4" style={{ borderColor: 'white' }}>
           <legend className="w-auto px-2">About Me</legend>
           <div className="form-group mb-3">
@@ -149,7 +142,7 @@ const DataEntryPage = () => {
           </div>
         </fieldset>
 
-        {/* Projects Section */}
+      
         <fieldset className="border p-3 mb-4" style={{ borderColor: 'white' }}>
           <legend className="w-auto px-2">Projects</legend>
           {projects.map((project, index) => (
@@ -203,7 +196,7 @@ const DataEntryPage = () => {
           </button>
         </fieldset>
 
-        {/* Social Media Links Section */}
+        
         <fieldset className="border p-3 mb-4" style={{ borderColor: 'white' }}>
           <legend className="w-auto px-2">Social Media Links</legend>
           {socialLinks.map((link, index) => (
