@@ -1,34 +1,19 @@
 import React, { useState } from 'react';
 
-const DataEntryPage = () => {
-  
-  const [studentName, setStudentName] = useState('');
-  const [bio, setBio] = useState('');
+const DataEntryPage = ({ studentName, setStudentName, bio, setBio, projects, setProjects }) => {
   const [introDetails, setIntroDetails] = useState('');
-
-  
   const [profilePicture, setProfilePicture] = useState('');
   const [skills, setSkills] = useState('');
   const [interests, setInterests] = useState('');
   const [aboutDescription, setAboutDescription] = useState('');
+  const [socialLinks, setSocialLinks] = useState([{ name: '', url: '' }]);
 
-  const [projects, setProjects] = useState([
-    { title: '', description: '', image: '', github: '' }
-  ]);
-
-  
-  const [socialLinks, setSocialLinks] = useState([
-    { name: '', url: '' }
-  ]);
-
- 
   const handleProjectChange = (index, field, value) => {
     const newProjects = [...projects];
     newProjects[index][field] = value;
     setProjects(newProjects);
   };
 
- 
   const handleAddProject = () => {
     setProjects([...projects, { title: '', description: '', image: '', github: '' }]);
   };
@@ -58,7 +43,6 @@ const DataEntryPage = () => {
       projects,
       socialLinks,
     };
-
     console.log('Submitted Data:', formData);
   };
 
@@ -66,7 +50,6 @@ const DataEntryPage = () => {
     <div className="container py-4" style={{ backgroundColor: '#343a40', color: 'white' }}>
       <h1 className="mb-4">Portfolio Data Entry</h1>
       <form onSubmit={handleSubmit}>
-      
         <fieldset className="border p-3 mb-4" style={{ borderColor: 'white' }}>
           <legend className="w-auto px-2">Introductory Details</legend>
           <div className="form-group mb-3">
@@ -87,7 +70,7 @@ const DataEntryPage = () => {
               onChange={(e) => setBio(e.target.value)}
               placeholder="Enter a short bio"
             />
-          </div>
+          </div> 
           <div className="form-group mb-3">
             <label>Additional Details:</label>
             <textarea
@@ -98,7 +81,6 @@ const DataEntryPage = () => {
             />
           </div>
         </fieldset>
-
         <fieldset className="border p-3 mb-4" style={{ borderColor: 'white' }}>
           <legend className="w-auto px-2">About Me</legend>
           <div className="form-group mb-3">
@@ -141,8 +123,6 @@ const DataEntryPage = () => {
             />
           </div>
         </fieldset>
-
-      
         <fieldset className="border p-3 mb-4" style={{ borderColor: 'white' }}>
           <legend className="w-auto px-2">Projects</legend>
           {projects.map((project, index) => (
@@ -195,8 +175,6 @@ const DataEntryPage = () => {
             Add Project
           </button>
         </fieldset>
-
-        
         <fieldset className="border p-3 mb-4" style={{ borderColor: 'white' }}>
           <legend className="w-auto px-2">Social Media Links</legend>
           {socialLinks.map((link, index) => (
@@ -227,7 +205,6 @@ const DataEntryPage = () => {
             Add Social Media
           </button>
         </fieldset>
-
         <button type="submit" className="btn btn-primary">
           Submit/Generate Portfolio
         </button>
@@ -237,3 +214,4 @@ const DataEntryPage = () => {
 };
 
 export default DataEntryPage;
+ 
