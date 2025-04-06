@@ -1,19 +1,19 @@
 [
   {
     "title": "Project1",
-    "description": "A live weather app using OpenWeather API.",
+    "description": "none",
     "image": "https://i.postimg.cc/RFWBt8c3/image-57.png",
     "github": "https://github.com/HashirSaikhani/PortfolioMaker"
   },
   {
     "title": "Project2",
-    "description": "A simple todo app with Firebase backend.",
+    "description": "none",
     "image": "https://i.postimg.cc/RFWBt8c3/image-57.png",
     "github": "https://github.com/HashirSaikhani/PortfolioMaker"
   },
   {
     "title": "Project3",
-    "description": "This portfolio built in React!",
+    "description": "none",
     "image": "https://i.postimg.cc/RFWBt8c3/image-57.png",
     "github": "https://github.com/HashirSaikhani/PortfolioMaker"
   }
