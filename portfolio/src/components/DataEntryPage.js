@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+// src/components/DataEntryPage.js
+import React from 'react';
 
-const DataEntryPage = ({ studentName, setStudentName, bio, setBio, projects, setProjects }) => {
-  const [introDetails, setIntroDetails] = useState('');
-  const [profilePicture, setProfilePicture] = useState('');
-  const [skills, setSkills] = useState('');
-  const [interests, setInterests] = useState('');
-  const [aboutDescription, setAboutDescription] = useState('');
-  const [socialLinks, setSocialLinks] = useState([{ name: '', url: '' }]);
-
+const DataEntryPage = ({
+  studentName, setStudentName,
+  bio, setBio,
+  introDetails, setIntroDetails,
+  profilePicture, setProfilePicture,
+  skills, setSkills,
+  interests, setInterests,
+  aboutDescription, setAboutDescription,
+  projects, setProjects,
+  socialLinks, setSocialLinks,
+  setShowPreviewAfterSubmit // ✅ new prop
+}) => {
   const handleProjectChange = (index, field, value) => {
     const newProjects = [...projects];
     newProjects[index][field] = value;
@@ -28,29 +33,43 @@ const DataEntryPage = ({ studentName, setStudentName, bio, setBio, projects, set
     setSocialLinks([...socialLinks, { name: '', url: '' }]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
     const formData = {
       studentName,
       bio,
       introDetails,
-      aboutMe: {
-        profilePicture,
-        skills,
-        interests,
-        aboutDescription,
-      },
+      profilePicture,
+      skills,
+      interests,
+      aboutDescription,
       projects,
       socialLinks,
     };
-    console.log('Submitted Data:', formData);
+  
+    try {
+      const response = await fetch("https://67f24a68ec56ec1a36d2ac9c.mockapi.io/portfolios", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+      console.log("Saved to MockAPI:", result);
+      alert("Portfolio saved successfully!");
+  
+      setShowPreviewAfterSubmit(true); // ✅ show preview
+    } catch (error) {
+      console.error("Failed to save portfolio:", error);
+      alert("Error saving portfolio.");
+    }
   };
-
+  
   return (
     <div className="container py-4" style={{ backgroundColor: '#343a40', color: 'white' }}>
       <h1 className="mb-4">Portfolio Data Entry</h1>
       <form onSubmit={handleSubmit}>
-        <fieldset className="border p-3 mb-4" style={{ borderColor: 'white' }}>
+        <fieldset className="border p-3 mb-4">
           <legend className="w-auto px-2">Introductory Details</legend>
           <div className="form-group mb-3">
             <label>Student's Name:</label>
@@ -70,7 +89,7 @@ const DataEntryPage = ({ studentName, setStudentName, bio, setBio, projects, set
               onChange={(e) => setBio(e.target.value)}
               placeholder="Enter a short bio"
             />
-          </div> 
+          </div>
           <div className="form-group mb-3">
             <label>Additional Details:</label>
             <textarea
@@ -81,7 +100,8 @@ const DataEntryPage = ({ studentName, setStudentName, bio, setBio, projects, set
             />
           </div>
         </fieldset>
-        <fieldset className="border p-3 mb-4" style={{ borderColor: 'white' }}>
+
+        <fieldset className="border p-3 mb-4">
           <legend className="w-auto px-2">About Me</legend>
           <div className="form-group mb-3">
             <label>Profile Picture URL:</label>
@@ -123,7 +143,8 @@ const DataEntryPage = ({ studentName, setStudentName, bio, setBio, projects, set
             />
           </div>
         </fieldset>
-        <fieldset className="border p-3 mb-4" style={{ borderColor: 'white' }}>
+
+        <fieldset className="border p-3 mb-4">
           <legend className="w-auto px-2">Projects</legend>
           {projects.map((project, index) => (
             <div key={index} className="card bg-dark mb-3">
@@ -175,7 +196,8 @@ const DataEntryPage = ({ studentName, setStudentName, bio, setBio, projects, set
             Add Project
           </button>
         </fieldset>
-        <fieldset className="border p-3 mb-4" style={{ borderColor: 'white' }}>
+
+        <fieldset className="border p-3 mb-4">
           <legend className="w-auto px-2">Social Media Links</legend>
           {socialLinks.map((link, index) => (
             <div key={index} className="mb-3">
@@ -205,6 +227,7 @@ const DataEntryPage = ({ studentName, setStudentName, bio, setBio, projects, set
             Add Social Media
           </button>
         </fieldset>
+
         <button type="submit" className="btn btn-primary">
           Submit/Generate Portfolio
         </button>
@@ -214,4 +237,3 @@ const DataEntryPage = ({ studentName, setStudentName, bio, setBio, projects, set
 };
 
 export default DataEntryPage;
- 

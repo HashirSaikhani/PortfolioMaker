@@ -7,10 +7,27 @@ const ContactSection = () => {
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+  
+    const data = { name, email, message };
+  
+    try {
+      await fetch("https://67f24a68ec56ec1a36d2ac9c.mockapi.io/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      setSubmitted(true);
+      setName('');
+      setEmail('');
+      setMessage('');
+    } catch (err) {
+      console.error("Error sending message:", err);
+      alert("Failed to send message.");
+    }
   };
+  
 
   useEffect(() => {
     if (submitted) {
