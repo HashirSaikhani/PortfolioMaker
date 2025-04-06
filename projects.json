@@ -1,20 +1,20 @@
 [
   {
-    "title": "React Weather App",
+    "title": "Project1",
     "description": "A live weather app using OpenWeather API.",
-    "image": "https://via.placeholder.com/300x150.png?text=Weather+App",
-    "github": "https://github.com/yourusername/weather-app"
+    "image": "https://i.postimg.cc/RFWBt8c3/image-57.png",
+    "github": "https://github.com/HashirSaikhani/PortfolioMaker"
   },
   {
-    "title": "Todo Tracker",
+    "title": "Project2",
     "description": "A simple todo app with Firebase backend.",
-    "image": "https://via.placeholder.com/300x150.png?text=Todo+App",
-    "github": "https://github.com/yourusername/todo-app"
+    "image": "https://i.postimg.cc/RFWBt8c3/image-57.png",
+    "github": "https://github.com/HashirSaikhani/PortfolioMaker"
   },
   {
-    "title": "Portfolio Site",
+    "title": "Project3",
     "description": "This portfolio built in React!",
-    "image": "https://via.placeholder.com/300x150.png?text=Portfolio",
-    "github": "https://github.com/yourusername/portfolio"
+    "image": "https://i.postimg.cc/RFWBt8c3/image-57.png",
+    "github": "https://github.com/HashirSaikhani/PortfolioMaker"
   }
 ]
